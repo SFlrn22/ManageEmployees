@@ -2,7 +2,7 @@
 
 namespace ManageEmployees.Application.Contracts
 {
-    public interface ILeaveType : IGenericRepository<LeaveType>
+    public interface ILeaveRequestRepository : IGenericRepository<LeaveRequest>
     {
 
     }
