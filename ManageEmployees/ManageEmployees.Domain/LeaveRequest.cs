@@ -1,0 +1,15 @@
+﻿using ManageEmployees.Domain.Common;
+
+namespace ManageEmployees.Domain
+{
+    public class LeaveRequest : BaseEntity
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int LeaveTypeId { get; set; }
+        public DateTime ReqeustDate { get; set; }
+        public string? RequestComments { get; set; }
+        public bool? Approved { get; set; }
+        public int RequestingEmployeeId { get; set; }
+    }
+}
