@@ -1,4 +1,6 @@
-﻿using ManageEmployees.Persistence.DatabaseContext;
+﻿using ManageEmployees.Application.Contracts;
+using ManageEmployees.Persistence.DatabaseContext;
+using ManageEmployees.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +16,12 @@ namespace ManageEmployees.Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString("connString"));
             });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
+            services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
+            services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
+
             return services;
         }
     }
