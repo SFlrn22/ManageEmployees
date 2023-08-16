@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ManageEmployees.Persistence.DatabaseContext
 {
-    public class DatabaseContext : DbContext
+    public class DBContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
 
         }
@@ -14,10 +14,17 @@ namespace ManageEmployees.Persistence.DatabaseContext
         public DbSet<LeaveAllocation> LeaveAllocations { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()
-                .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
+                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
                 entry.Entity.DateModified = DateTime.Now;
 
@@ -26,7 +33,7 @@ namespace ManageEmployees.Persistence.DatabaseContext
                     entry.Entity.DateCreated = DateTime.Now;
                 }
             }
-            return base.SaveChangesAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }
