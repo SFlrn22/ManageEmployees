@@ -14,7 +14,7 @@ namespace ManageEmployees.Persistence
         {
             services.AddDbContext<DBContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("connString"));
+                options.UseSqlServer(configuration.GetConnectionString("ManageEmployeesDB"));
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
