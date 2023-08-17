@@ -4,7 +4,7 @@ using MediatR;
 
 namespace ManageEmployees.Application.Features.LeaveAllocation.Queries.GetLeaveAllocationDetails
 {
-    public class GetLeaveAllocationDetailsQuerryHandler : IRequestHandler<GetLeaveAllocationDetailsQuerry, LeaveAllocationDetailsDto>
+    public class GetLeaveAllocationDetailsQuerryHandler : IRequestHandler<GetLeaveAllocationDetailsQuerry, LeaveAllocationDetailsDTO>
     {
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly IMapper _mapper;
@@ -13,10 +13,10 @@ namespace ManageEmployees.Application.Features.LeaveAllocation.Queries.GetLeaveA
             _leaveAllocationRepository = leaveAllocationRepository;
             _mapper = mapper;
         }
-        public async Task<LeaveAllocationDetailsDto> Handle(GetLeaveAllocationDetailsQuerry request, CancellationToken cancellationToken)
+        public async Task<LeaveAllocationDetailsDTO> Handle(GetLeaveAllocationDetailsQuerry request, CancellationToken cancellationToken)
         {
             var leaveAllocation = await _leaveAllocationRepository.GetLeaveAllocationWithDetailsAsync(request.Id);
-            var data = _mapper.Map<LeaveAllocationDetailsDto>(leaveAllocation);
+            var data = _mapper.Map<LeaveAllocationDetailsDTO>(leaveAllocation);
             return data;
         }
     }

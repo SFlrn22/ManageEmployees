@@ -29,7 +29,7 @@ namespace ManageEmployees.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeDTO>> Get(int id)
         {
-            var employees = await _mediator.Send(new GetEmployeeDetailsQuery(id));
+            var employees = await _mediator.Send(new GetEmployeeDetailsQuery { Id = id });
             return Ok(employees);
         }
 
