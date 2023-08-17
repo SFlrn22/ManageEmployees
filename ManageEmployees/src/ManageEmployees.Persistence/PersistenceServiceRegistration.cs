@@ -1,4 +1,5 @@
 ﻿using ManageEmployees.Application.Contracts;
+using ManageEmployees.Application.Contracts.Persistence;
 using ManageEmployees.Persistence.DatabaseContext;
 using ManageEmployees.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace ManageEmployees.Persistence
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
             services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
-
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             return services;
         }
     }

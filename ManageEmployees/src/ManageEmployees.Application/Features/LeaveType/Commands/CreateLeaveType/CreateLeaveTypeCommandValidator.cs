@@ -11,7 +11,6 @@ namespace ManageEmployees.Application.Features.LeaveType.Commands.CreateLeaveTyp
         {
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required")
-                .NotNull()
                 .MaximumLength(70).WithMessage("{PropertyName} should not exceed 70 characters");
 
             RuleFor(c => c.DefaultDays)
@@ -21,6 +20,7 @@ namespace ManageEmployees.Application.Features.LeaveType.Commands.CreateLeaveTyp
             RuleFor(q => q)
                 .MustAsync(LeaveTypeNameUnique)
                 .WithMessage("LeaveType already exists");
+
             _leaveTypeRepository = leaveTypeRepository;
         }
 

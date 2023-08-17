@@ -18,4 +18,9 @@
     <ProjectReference Include="..\ManageEmployees.Domain\ManageEmployees.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Employee\Commands\DeleteEmployee\" />
+    <Folder Include="Features\Employee\Commands\UpdateEmployee\" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,7 @@ namespace ManageEmployees.Domain
         public DateTime ReqeustDate { get; set; }
         public string? RequestComments { get; set; }
         public bool? Approved { get; set; }
-        public string? RequestingEmployeeId { get; set; }
+        public Employee? Employee { get; set; }
+        public int RequestingEmployeeId { get; set; }
     }
 }
