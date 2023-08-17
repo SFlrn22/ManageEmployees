@@ -1,5 +1,4 @@
 ﻿using ManageEmployees.Domain;
-using ManageEmployees.Domain.Enums;
 using ManageEmployees.Domain.Models;
 
 namespace ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDetails
@@ -14,7 +13,7 @@ namespace ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDeta
         public string Email { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public EmploymentType? EmploymentType { get; set; }
-        public EmploymentTypesEnum EmploymentTypeId { get; set; }
+        public int EmploymentTypeId { get; set; }
         public string JobTitle { get; set; } = string.Empty;
         public Department? Department { get; set; }
         public int DepartmentId { get; set; }

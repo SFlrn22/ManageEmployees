@@ -1,5 +1,6 @@
 ﻿using ManageEmployees.Domain;
 using ManageEmployees.Domain.Common;
+using ManageEmployees.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageEmployees.Persistence.DatabaseContext
@@ -15,6 +16,7 @@ namespace ManageEmployees.Persistence.DatabaseContext
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<EmploymentType> EmploymentTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

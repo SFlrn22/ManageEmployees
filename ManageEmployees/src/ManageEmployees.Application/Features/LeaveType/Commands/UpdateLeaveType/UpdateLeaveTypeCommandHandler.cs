@@ -2,7 +2,6 @@
 using ManageEmployees.Application.Contracts;
 using ManageEmployees.Application.Contracts.Logging;
 using ManageEmployees.Application.Exceptions;
-using ManageEmployees.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
 using MediatR;
 
 namespace ManageEmployees.Application.Features.LeaveType.Commands.UpdateLeaveType
@@ -11,10 +10,10 @@ namespace ManageEmployees.Application.Features.LeaveType.Commands.UpdateLeaveTyp
     {
         private readonly IMapper _mapper;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
-        private readonly IAppLogger<GetLeaveTypesQueryHandler> _logger;
+        private readonly IAppLogger<UpdateLeaveTypeCommandHandler> _logger;
 
         public UpdateLeaveTypeCommandHandler(IMapper mapper, ILeaveTypeRepository leaveTypeRepository,
-            IAppLogger<GetLeaveTypesQueryHandler> logger)
+            IAppLogger<UpdateLeaveTypeCommandHandler> logger)
         {
             _mapper = mapper;
             _leaveTypeRepository = leaveTypeRepository;

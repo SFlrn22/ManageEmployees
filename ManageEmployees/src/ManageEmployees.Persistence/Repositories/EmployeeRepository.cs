@@ -17,19 +17,32 @@ namespace ManageEmployees.Persistence.Repositories
                 e.LastName == lastName && e.Email == email) == false;
         }
 
-        public Task<List<Employee>> GetEmployeesWithDetailsAsync()
+        public async Task<List<Employee>> GetEmployeesWithDetailsAsync()
         {
-            throw new NotImplementedException();
+            var employees = await _context.Employees
+                .Include(e => e.EmploymentType)
+                .Include(e => e.Department)
+                .ToListAsync();
+            return employees;
         }
 
-        public Task<List<Employee>> GetEmployeesWithDetailsByDepartmentAsync(int departmentId)
+        public async Task<List<Employee>> GetEmployeesWithDetailsByDepartmentAsync(int departmentId)
         {
-            throw new NotImplementedException();
+            var employees = await _context.Employees
+                .Where(e => e.DepartmentId == departmentId)
+                .Include(e => e.EmploymentType)
+                .Include(e => e.Department)
+                .ToListAsync();
+            return employees;
         }
 
-        public Task<Employee> GetEmployeeWithDetailsAsync(int id)
+        public async Task<Employee> GetEmployeeWithDetailsAsync(int id)
         {
-            throw new NotImplementedException();
+            var employee = await _context.Employees
+                .Include(e => e.EmploymentType)
+                .Include(e => e.Department)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            return employee;
         }
     }
 }

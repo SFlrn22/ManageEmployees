@@ -19,7 +19,7 @@ namespace ManageEmployees.Application.Features.LeaveType.Commands.CreateLeaveTyp
         {
             var validator = new CreateLeaveTypeCommandValidator(_leaveTypeRepository);
             var validationResult = await validator.ValidateAsync(request);
-            if (!validationResult.IsValid)
+            if (validationResult.Errors.Any())
                 throw new BadRequestException("Invalid LeaveType", validationResult);
             var leaveTypeToCreate = _mapper.Map<Domain.LeaveType>(request);
             await _leaveTypeRepository.CreateAsync(leaveTypeToCreate);
