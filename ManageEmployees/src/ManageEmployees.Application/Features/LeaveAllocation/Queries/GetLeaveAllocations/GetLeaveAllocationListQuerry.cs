@@ -1,6 +1,8 @@
-﻿namespace ManageEmployees.Application.Features.LeaveAllocation.Queries.GetLeaveAllocations
+﻿using MediatR;
+
+namespace ManageEmployees.Application.Features.LeaveAllocation.Queries.GetLeaveAllocations
 {
-    public class GetLeaveAllocationListQuerry
+    public class GetLeaveAllocationListQuerry : IRequest<List<LeaveAllocationDTO>>
     {
     }
 }

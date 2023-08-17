@@ -2,5 +2,8 @@
 
 namespace ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDetails
 {
-    public record GetEmployeeDetailsQuery(int Id) : IRequest<EmployeeDetailsDTO>;
+    public class GetEmployeeDetailsQuery : IRequest<EmployeeDetailsDTO>
+    {
+        public int Id { get; set; }
+    }
 }
