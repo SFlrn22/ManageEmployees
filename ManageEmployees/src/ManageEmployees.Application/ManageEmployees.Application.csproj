@@ -18,4 +18,10 @@
     <ProjectReference Include="..\ManageEmployees.Domain\ManageEmployees.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\LeaveAllocation\Commands\" />
+    <Folder Include="Features\LeaveRequest\Commands\" />
+    <Folder Include="Features\LeaveRequest\Queries\" />
+  </ItemGroup>
+
 </Project>

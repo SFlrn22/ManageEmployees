@@ -1,5 +1,4 @@
-﻿using ManageEmployees.Domain;
-using ManageEmployees.Domain.Models;
+﻿using ManageEmployees.Application.DTO;
 
 namespace ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDetails
 {
@@ -12,10 +11,10 @@ namespace ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDeta
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
-        public EmploymentType? EmploymentType { get; set; }
+        public EmploymentTypeDTO EmploymentType { get; set; }
         public int EmploymentTypeId { get; set; }
         public string JobTitle { get; set; } = string.Empty;
-        public Department? Department { get; set; }
+        public DepartmentDTO Department { get; set; }
         public int DepartmentId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
