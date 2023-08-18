@@ -27,9 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ManageEmployees.API\ManageEmployees.API.csproj" />
-    <ProjectReference Include="..\..\src\ManageEmployees.Application\ManageEmployees.Application.csproj" />
-    <ProjectReference Include="..\..\src\ManageEmployees.Infrastructure\ManageEmployees.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\ManageEmployees.Persistence\ManageEmployees.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
