@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageEmployees.Integration
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageEmployees.BlazorUI", "src\ManageEmployees.BlazorUI\ManageEmployees.BlazorUI.csproj", "{D496B0E6-1238-4829-B269-3B6D603C9352}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageEmployees.Identity", "src\ManageEmployees.Identity\ManageEmployees.Identity.csproj", "{6185D5B4-273E-4B62-B98D-1F0D11F845FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{D496B0E6-1238-4829-B269-3B6D603C9352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D496B0E6-1238-4829-B269-3B6D603C9352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D496B0E6-1238-4829-B269-3B6D603C9352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6185D5B4-273E-4B62-B98D-1F0D11F845FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6185D5B4-273E-4B62-B98D-1F0D11F845FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6185D5B4-273E-4B62-B98D-1F0D11F845FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6185D5B4-273E-4B62-B98D-1F0D11F845FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{1D36CDA9-0B23-4D7C-B2D5-21B62F21A54C} = {1586D945-A456-4AEE-85C0-9BDD8422C35D}
 		{4C18BCD9-FAF3-4CAA-961A-7665C6B2CBA2} = {1586D945-A456-4AEE-85C0-9BDD8422C35D}
 		{D496B0E6-1238-4829-B269-3B6D603C9352} = {B2C9B6A0-3235-44B7-B3FA-4DDB5A7E1177}
+		{6185D5B4-273E-4B62-B98D-1F0D11F845FB} = {7E3EDE55-9EA9-409C-A4E4-C1C404794ADF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC9630E8-0AA3-4DDA-ABFF-1BFAB2EB6FA4}
