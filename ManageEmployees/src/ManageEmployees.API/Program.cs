@@ -12,7 +12,7 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("all", builder => builder.AllowAnyOrigin()
+    options.AddPolicy("accept_connection", builder => builder.AllowAnyOrigin()
     .AllowAnyHeader()
     .AllowAnyMethod());
 });
@@ -33,6 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("accept_connection");
 app.UseAuthorization();
 
 app.MapControllers();
