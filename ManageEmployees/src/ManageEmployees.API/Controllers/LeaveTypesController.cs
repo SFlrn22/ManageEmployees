@@ -20,10 +20,10 @@ namespace ManageEmployees.API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<LeaveTypeDTO>> Get()
+        public async Task<ActionResult<List<LeaveTypeDTO>>> Get()
         {
             var leaveTypes = await _mediator.Send(new GetLeaveTypesQuery());
-            return leaveTypes;
+            return Ok(leaveTypes);
         }
 
         [HttpGet("{id}")]
