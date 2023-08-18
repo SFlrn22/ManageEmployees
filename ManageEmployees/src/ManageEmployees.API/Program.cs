@@ -1,3 +1,4 @@
+using ManageEmployees.API.Middleware;
 using ManageEmployees.Application;
 using ManageEmployees.Infrastructure;
 using ManageEmployees.Persistence;
@@ -21,6 +22,8 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
