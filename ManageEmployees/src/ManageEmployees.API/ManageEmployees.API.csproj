@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ManageEmployees.Persistence\ManageEmployees.Persistence.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="IntegrationTests" />
+	</ItemGroup>
+
 </Project>

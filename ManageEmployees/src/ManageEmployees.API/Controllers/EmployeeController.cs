@@ -20,17 +20,17 @@ namespace ManageEmployees.API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<EmployeeDTO>> Get()
+        public async Task<ActionResult<List<EmployeeDTO>>> Get()
         {
             var employees = await _mediator.Send(new GetEmployeesQuery());
-            return employees;
+            return Ok(employees);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeDTO>> Get(int id)
         {
-            var employees = await _mediator.Send(new GetEmployeeDetailsQuery { Id = id });
-            return Ok(employees);
+            var employee = await _mediator.Send(new GetEmployeeDetailsQuery { Id = id });
+            return Ok(employee);
         }
 
         [HttpPost]
