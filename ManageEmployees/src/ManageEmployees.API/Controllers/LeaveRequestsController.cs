@@ -6,12 +6,14 @@ using ManageEmployees.Application.Features.LeaveRequest.Commands.UpdateLeaveRequ
 using ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequestDetails;
 using ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManageEmployees.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveRequestsController : ControllerBase
     {
         private readonly IMediator _mediator;

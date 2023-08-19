@@ -4,12 +4,14 @@ using ManageEmployees.Application.Features.Employee.Commands.UpdateEmployee;
 using ManageEmployees.Application.Features.Employee.Queries.GetAllEmployees;
 using ManageEmployees.Application.Features.Employee.Queries.GetEmployeesDetails;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManageEmployees.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator _mediator;

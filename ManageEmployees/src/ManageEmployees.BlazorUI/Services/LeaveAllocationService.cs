@@ -1,11 +1,13 @@
-﻿using ManageEmployees.BlazorUI.Contracts;
+﻿using Blazored.LocalStorage;
+using ManageEmployees.BlazorUI.Contracts;
 using ManageEmployees.BlazorUI.Services.Base;
 
 namespace ManageEmployees.BlazorUI.Services
 {
     public class LeaveAllocationService : BaseHttpService, ILeaveAllocationService
     {
-        public LeaveAllocationService(IClient client) : base(client)
+        public LeaveAllocationService(IClient client, ILocalStorageService localStorage) :
+            base(client, localStorage)
         {
 
         }
