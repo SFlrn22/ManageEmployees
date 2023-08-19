@@ -1,5 +1,6 @@
 using ManageEmployees.API.Middleware;
 using ManageEmployees.Application;
+using ManageEmployees.Identity;
 using ManageEmployees.Infrastructure;
 using ManageEmployees.Persistence;
 
@@ -8,11 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("accept_connection", builder => builder.AllowAnyOrigin()
+    options.AddPolicy("accept_connection", builder => builder
+    .AllowAnyOrigin()
     .AllowAnyHeader()
     .AllowAnyMethod());
 });
@@ -34,6 +37,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("accept_connection");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
