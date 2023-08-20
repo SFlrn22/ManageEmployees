@@ -10,9 +10,11 @@ namespace ManageEmployees.Application.Features.LeaveType.Commands.UpdateLeaveTyp
         {
             RuleFor(u => u.Id)
                 .NotNull()
-                .MustAsync(LeaveTypeMustExist);
+                .MustAsync(LeaveTypeMustExist)
+                .WithMessage("Invalid Id");
 
             RuleFor(u => u.Name)
+                .NotNull()
                 .MaximumLength(70).WithMessage("{PropertyName} should not exceed 70 characters");
 
             RuleFor(u => u.DefaultDays)
