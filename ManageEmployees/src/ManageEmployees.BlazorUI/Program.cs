@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Blazored.Toast;
 using ManageEmployees.BlazorUI;
 using ManageEmployees.BlazorUI.Contracts;
 using ManageEmployees.BlazorUI.Handler;
@@ -18,6 +19,7 @@ builder.Services.AddTransient<JwtAuthHandler>();
 builder.Services.AddHttpClient<IClient, Client>(Client => Client.BaseAddress = new Uri("https://localhost:7290"))
     .AddHttpMessageHandler<JwtAuthHandler>();
 
+builder.Services.AddBlazoredToast();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<APIAuthStateProvider>();
