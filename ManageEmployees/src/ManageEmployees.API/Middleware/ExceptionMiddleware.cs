@@ -1,15 +1,18 @@
 ﻿using ManageEmployees.API.Models;
 using ManageEmployees.Application.Exceptions;
 using System.Net;
+using System.Text.Json;
 
 namespace ManageEmployees.API.Middleware
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        public ExceptionMiddleware(RequestDelegate next)
+        private readonly ILogger<ExceptionMiddleware> _logger;
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
         public async Task InvokeAsync(HttpContext httpContext)
         {
@@ -63,6 +66,8 @@ namespace ManageEmployees.API.Middleware
             }
 
             httpContext.Response.StatusCode = (int)statusCode;
+            var logMessage = JsonSerializer.Serialize(problem);
+            _logger.LogError(ex, logMessage);
             await httpContext.Response.WriteAsJsonAsync(problem);
 
         }
