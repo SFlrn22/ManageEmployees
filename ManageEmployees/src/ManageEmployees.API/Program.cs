@@ -3,6 +3,7 @@ using ManageEmployees.Application;
 using ManageEmployees.Identity;
 using ManageEmployees.Infrastructure;
 using ManageEmployees.Persistence;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -55,6 +56,14 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services
+    .AddHealthChecks()
+    .AddSqlServer(
+        connectionString: builder.Configuration["ConnectionStrings:ManageEmployeesDB"],
+        healthQuery: "SELECT 1;",
+        name: "sql",
+        failureStatus: HealthStatus.Degraded,
+        tags: new string[] { "db", "sql", "sqlserver" });
 
 var app = builder.Build();
 
@@ -67,6 +76,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSerilogRequestLogging();
+app.MapHealthChecks("/hc");
 
 app.UseHttpsRedirection();
 
