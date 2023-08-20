@@ -17,10 +17,10 @@ namespace ManageEmployees.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "6.0.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("ManageEmployees.Domain.Department", b =>
                 {
@@ -28,7 +28,7 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -51,7 +51,7 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -107,7 +107,7 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -115,8 +115,9 @@ namespace ManageEmployees.Persistence.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LeaveTypeId")
                         .HasColumnType("int");
@@ -129,8 +130,6 @@ namespace ManageEmployees.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("LeaveTypeId");
 
                     b.ToTable("LeaveAllocations");
@@ -142,9 +141,12 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool?>("Approved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Cancelled")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DateCreated")
@@ -162,14 +164,15 @@ namespace ManageEmployees.Persistence.Migrations
                     b.Property<int>("LeaveTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReqeustDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("RequestComments")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RequestingEmployeeId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RequestingEmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -189,7 +192,7 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -208,6 +211,32 @@ namespace ManageEmployees.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LeaveTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9213),
+                            DateModified = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9254),
+                            DefaultDays = 10,
+                            Name = "Vacation"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9257),
+                            DateModified = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9259),
+                            DefaultDays = 10,
+                            Name = "Sick"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateCreated = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9261),
+                            DateModified = new DateTime(2023, 8, 20, 15, 14, 7, 599, DateTimeKind.Local).AddTicks(9263),
+                            DefaultDays = 1,
+                            Name = "Birthday"
+                        });
                 });
 
             modelBuilder.Entity("ManageEmployees.Domain.Models.EmploymentType", b =>
@@ -216,7 +245,7 @@ namespace ManageEmployees.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -254,19 +283,11 @@ namespace ManageEmployees.Persistence.Migrations
 
             modelBuilder.Entity("ManageEmployees.Domain.LeaveAllocation", b =>
                 {
-                    b.HasOne("ManageEmployees.Domain.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ManageEmployees.Domain.LeaveType", "LeaveType")
                         .WithMany()
                         .HasForeignKey("LeaveTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
 
                     b.Navigation("LeaveType");
                 });
