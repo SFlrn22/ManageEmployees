@@ -11,5 +11,6 @@ namespace ManageEmployees.BlazorUI.Contracts
         Task<LeaveRequestVM> GetLeaveRequest(int id);
         Task DeleteLeaveRequest(int id);
         Task ApproveLeaveRequest(int id, bool approved);
+        Task<Response<Guid>> CancelLeaveRequest(int id);
     }
 }

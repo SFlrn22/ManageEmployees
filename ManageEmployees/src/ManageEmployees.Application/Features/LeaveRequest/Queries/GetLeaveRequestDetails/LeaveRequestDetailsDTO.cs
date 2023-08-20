@@ -1,13 +1,14 @@
-﻿using ManageEmployees.Application.Features.Employee.Queries.GetAllEmployees;
-using ManageEmployees.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
+﻿using ManageEmployees.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
+using ManageEmployees.Application.Models.Identity;
 
 namespace ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequestDetails
 {
     public class LeaveRequestDetailsDTO
     {
+        public int Id { get; set; }
+        public EmployeeAuth Employee { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public EmployeeDTO? Employee { get; set; }
         public int RequestingEmployeeId { get; set; }
         public LeaveTypeDTO? LeaveType { get; set; }
         public int LeaveTypeId { get; set; }

@@ -7,9 +7,12 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Commands.CancelLeave
     public class CancelLeaveRequestCommandHandler : IRequestHandler<CancelLeaveRequestCommand, Unit>
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
-        public CancelLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository)
+        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
+        public CancelLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository,
+            ILeaveAllocationRepository leaveAllocationRepository)
         {
             _leaveRequestRepository = leaveRequestRepository;
+            _leaveAllocationRepository = leaveAllocationRepository;
         }
         public async Task<Unit> Handle(CancelLeaveRequestCommand request, CancellationToken cancellationToken)
         {
@@ -19,6 +22,16 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Commands.CancelLeave
                 throw new NotFoundException(nameof(leaveRequest), request.Id);
 
             leaveRequest.Cancelled = true;
+            await _leaveRequestRepository.UpdateAsync(leaveRequest);
+            if (leaveRequest.Approved is true)
+            {
+                int daysRequested = (int)(leaveRequest.EndDate - leaveRequest.StartDate).TotalDays;
+                var allocation = await _leaveAllocationRepository.GetUserAllocationsAsync(
+                    leaveRequest.RequestingEmployeeId, leaveRequest.LeaveTypeId);
+                allocation.NumberOfDays += daysRequested;
+
+                await _leaveAllocationRepository.UpdateAsync(allocation);
+            }
 
             return Unit.Value;
         }

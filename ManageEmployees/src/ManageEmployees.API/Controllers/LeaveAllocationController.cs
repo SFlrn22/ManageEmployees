@@ -20,7 +20,7 @@ namespace ManageEmployees.API.Controllers
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task<ActionResult<List<LeaveAllocationDTO>>> Get()
+        public async Task<ActionResult<List<LeaveAllocationDTO>>> Get(bool isLoggedInUser = false)
         {
             var leaveAllocations = await _mediator.Send(new GetLeaveAllocationListQuerry());
             return Ok(leaveAllocations);

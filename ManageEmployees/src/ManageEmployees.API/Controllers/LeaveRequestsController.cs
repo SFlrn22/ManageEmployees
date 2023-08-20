@@ -23,7 +23,7 @@ namespace ManageEmployees.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<LeaveRequestDTO>>> Get()
+        public async Task<ActionResult<List<LeaveRequestDTO>>> Get(bool isLoggedInUser = false)
         {
             var leaveRequests = await _mediator.Send(new GetLeaveRequestsQuery());
             return Ok(leaveRequests);
