@@ -14,7 +14,6 @@ namespace ManageEmployees.BlazorUI.Services
 
         public async Task<Response<Guid>> CreateLeaveAllocations(int leaveTypeId)
         {
-            await AddBearerToken();
             try
             {
                 var response = new Response<Guid>();
