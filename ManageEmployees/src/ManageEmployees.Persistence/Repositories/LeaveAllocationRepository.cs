@@ -16,7 +16,7 @@ namespace ManageEmployees.Persistence.Repositories
             await _context.AddRangeAsync(allocations);
         }
 
-        public async Task<bool> AllocationExistsAsync(int userid, int leaveTypeId, int period)
+        public async Task<bool> AllocationExistsAsync(string userid, int leaveTypeId, int period)
         {
             return await _context.LeaveAllocations.AnyAsync(q => q.EmployeeId == userid
                     && q.LeaveTypeId == leaveTypeId
@@ -39,7 +39,7 @@ namespace ManageEmployees.Persistence.Repositories
             return leaveAllocations;
         }
 
-        public async Task<List<LeaveAllocation>> GetLeaveAllocationWithDetailsAsyncByUser(int userId)
+        public async Task<List<LeaveAllocation>> GetLeaveAllocationWithDetailsAsyncByUser(string userId)
         {
             var leaveAllocations = await _context.LeaveAllocations
                 .Where(q => q.EmployeeId == userId)
@@ -48,12 +48,10 @@ namespace ManageEmployees.Persistence.Repositories
             return leaveAllocations;
         }
 
-        public async Task<List<LeaveAllocation>> GetUserAllocationsAsync(int userId, int leaveTypeId)
+        public async Task<LeaveAllocation> GetUserAllocationsAsync(string userId, int leaveTypeId)
         {
             var leaveAllocations = await _context.LeaveAllocations
-                .Where(q => q.EmployeeId == userId && q.LeaveTypeId == leaveTypeId)
-                .Include(q => q.LeaveType)
-                .ToListAsync();
+                .FirstOrDefaultAsync(q => q.EmployeeId == userId && q.LeaveTypeId == leaveTypeId);
             return leaveAllocations;
         }
     }

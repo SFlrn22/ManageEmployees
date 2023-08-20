@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using ManageEmployees.Application.Contracts;
+﻿using ManageEmployees.Application.Contracts;
+using ManageEmployees.Application.Contracts.Identity;
 using ManageEmployees.Application.Exceptions;
 using MediatR;
 
@@ -8,14 +8,16 @@ namespace ManageEmployees.Application.Features.LeaveAllocation.Commands.CreateLe
     public class CreateLeaveAllocationCommandHandler :
         IRequestHandler<CreateLeaveAllocationCommand, Unit>
     {
-        private readonly IMapper _mapper;
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
-        public CreateLeaveAllocationCommandHandler(IMapper mapper, ILeaveAllocationRepository leaveAllocationRepository, ILeaveTypeRepository leaveTypeRepository)
+        private readonly IUserService _userService;
+        public CreateLeaveAllocationCommandHandler(ILeaveAllocationRepository leaveAllocationRepository,
+            ILeaveTypeRepository leaveTypeRepository,
+            IUserService userService)
         {
-            _mapper = mapper;
             _leaveAllocationRepository = leaveAllocationRepository;
             _leaveTypeRepository = leaveTypeRepository;
+            _userService = userService;
         }
         public async Task<Unit> Handle(CreateLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
@@ -25,8 +27,33 @@ namespace ManageEmployees.Application.Features.LeaveAllocation.Commands.CreateLe
             if (validationResult.Errors.Any())
                 throw new BadRequestException("Invalid LeaveAllocation Request", validationResult);
 
-            var leaveAllocation = _mapper.Map<Domain.LeaveAllocation>(request);
-            await _leaveAllocationRepository.CreateAsync(leaveAllocation);
+            var leaveType = await _leaveTypeRepository.GetByIdAsync(request.LeaveTypeId);
+            var employees = await _userService.GetEmployees();
+            var period = DateTime.Now.Year;
+            var allocationsToAdd = new List<Domain.LeaveAllocation>();
+
+
+            foreach (var employee in employees)
+            {
+                var allocationExists = await _leaveAllocationRepository.AllocationExistsAsync(employee.Id, leaveType.Id, period);
+
+                if (allocationExists is false)
+                {
+                    allocationsToAdd.Add(new Domain.LeaveAllocation
+                    {
+                        EmployeeId = employee.Id,
+                        LeaveTypeId = leaveType.Id,
+                        NumberOfDays = leaveType.DefaultDays,
+                        Period = period
+                    });
+                }
+            }
+
+            if (allocationsToAdd.Any())
+            {
+                await _leaveAllocationRepository.AddAllocationsAsync(allocationsToAdd);
+            }
+
             return Unit.Value;
         }
     }

@@ -6,5 +6,6 @@ namespace ManageEmployees.Application.Contracts.Identity
     {
         Task<EmployeeAuth> GetEmployee(string userId);
         Task<List<EmployeeAuth>> GetEmployees();
+        public string UserId { get; }
     }
 }

@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using ManageEmployees.BlazorUI;
 using ManageEmployees.BlazorUI.Contracts;
+using ManageEmployees.BlazorUI.Handler;
 using ManageEmployees.BlazorUI.Providers;
 using ManageEmployees.BlazorUI.Services;
 using ManageEmployees.BlazorUI.Services.Base;
@@ -13,10 +14,13 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddHttpClient<IClient, Client>(Client => Client.BaseAddress = new Uri("http://localhost:4811"));
+builder.Services.AddTransient<JwtAuthHandler>();
+builder.Services.AddHttpClient<IClient, Client>(Client => Client.BaseAddress = new Uri("https://localhost:7290"))
+    .AddHttpMessageHandler<JwtAuthHandler>();
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<APIAuthStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider, APIAuthStateProvider>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();

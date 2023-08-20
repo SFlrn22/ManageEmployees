@@ -10,6 +10,8 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveTypes
         public NavigationManager NavigationManager { get; set; }
         [Inject]
         public ILeaveTypeService _leaveTypeService { get; set; }
+        [Inject]
+        public ILeaveAllocationService _leaveAllocationService { get; set; }
         public List<LeaveTypeVM> LeaveTypes { get; private set; }
         public string Message { get; set; } = string.Empty;
         protected void CreateLeaveType()
@@ -18,7 +20,7 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveTypes
         }
         protected void AllocateLeaveType(int id)
         {
-
+            _leaveAllocationService.CreateLeaveAllocations(id);
         }
         protected void EditLeaveType(int id)
         {

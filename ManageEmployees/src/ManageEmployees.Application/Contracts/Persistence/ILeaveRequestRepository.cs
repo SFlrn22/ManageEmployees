@@ -6,6 +6,6 @@ namespace ManageEmployees.Application.Contracts
     {
         Task<LeaveRequest> GetLeaveRequestWithDetailsAsync(int id);
         Task<List<LeaveRequest>> GetLeaveRequestWithDetailsAsync();
-        Task<List<LeaveRequest>> GetLeaveRequestWithDetailsAsyncByUser(int userId);
+        Task<List<LeaveRequest>> GetLeaveRequestWithDetailsAsyncByUser(string userId);
     }
 }

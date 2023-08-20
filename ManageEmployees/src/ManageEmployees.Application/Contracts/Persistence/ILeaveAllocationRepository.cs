@@ -6,9 +6,9 @@ namespace ManageEmployees.Application.Contracts
     {
         Task<LeaveAllocation> GetLeaveAllocationWithDetailsAsync(int id);
         Task<List<LeaveAllocation>> GetLeaveAllocationWithDetailsAsync();
-        Task<List<LeaveAllocation>> GetLeaveAllocationWithDetailsAsyncByUser(int userId);
-        Task<bool> AllocationExistsAsync(int userid, int leaveTypeId, int period);
+        Task<List<LeaveAllocation>> GetLeaveAllocationWithDetailsAsyncByUser(string userId);
+        Task<bool> AllocationExistsAsync(string userid, int leaveTypeId, int period);
         Task AddAllocationsAsync(List<LeaveAllocation> allocations);
-        Task<List<LeaveAllocation>> GetUserAllocationsAsync(int userId, int leaveTypeId);
+        Task<LeaveAllocation> GetUserAllocationsAsync(string userId, int leaveTypeId);
     }
 }
