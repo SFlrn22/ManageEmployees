@@ -25,13 +25,6 @@ namespace ManageEmployees.BlazorUI.Providers
             }
 
             var savedToken = await _localStorage.GetItemAsync<string>("token");
-            var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
-
-            if (tokenContent.ValidTo < DateTime.Now)
-            {
-                await _localStorage.RemoveItemAsync("token");
-                return new AuthenticationState(user);
-            }
 
             var claims = await GetClaims();
 

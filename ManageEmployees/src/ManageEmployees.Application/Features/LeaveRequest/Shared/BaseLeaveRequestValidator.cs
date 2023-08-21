@@ -13,7 +13,7 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Shared
                 .WithMessage("{PropertyName} must be before {ComparisonValue}");
 
             RuleFor(l => l.EndDate)
-                .LessThan(c => c.StartDate)
+                .GreaterThan(c => c.StartDate)
                 .WithMessage("{PropertyName} must be after {ComparisonValue}");
 
             RuleFor(l => l.LeaveTypeId)

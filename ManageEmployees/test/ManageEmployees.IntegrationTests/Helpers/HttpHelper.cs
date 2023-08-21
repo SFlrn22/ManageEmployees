@@ -18,6 +18,8 @@ namespace ManageEmployees.IntegrationTests.Helpers
             public const string LEAVEALLOCATIONS = "/api/LeaveAllocation";
             public const string CANCELLEAVEREQUEST = "/api/LeaveRequests/CancelRequest";
             public const string UPDATELEAVEREQUEST = "/api/LeaveRequests/UpdateApproval";
+            public const string AUTH_LOGIN = "/api/Auth/login";
+            public const string AUTH_REGISTER = "/api/Auth/register";
         }
     }
 }
