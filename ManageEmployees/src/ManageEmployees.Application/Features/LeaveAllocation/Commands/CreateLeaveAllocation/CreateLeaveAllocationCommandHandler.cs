@@ -35,7 +35,7 @@ namespace ManageEmployees.Application.Features.LeaveAllocation.Commands.CreateLe
 
             foreach (var employee in employees)
             {
-                var allocationExists = await _leaveAllocationRepository.AllocationExistsAsync(employee.Id, leaveType.Id, period);
+                var allocationExists = await _leaveAllocationRepository.AllocationExistsAsync(employee.Id, request.LeaveTypeId, period);
 
                 if (allocationExists is false)
                 {

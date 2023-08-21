@@ -6,13 +6,13 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequ
     public class LeaveRequestDetailsDTO
     {
         public int Id { get; set; }
-        public EmployeeAuth Employee { get; set; }
+        public EmployeeAuth Employee { get; set; } = new EmployeeAuth();
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int RequestingEmployeeId { get; set; }
+        public string RequestingEmployeeId { get; set; }
         public LeaveTypeDTO? LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
-        public DateTime ReqeustDate { get; set; }
+        public DateTime RequestDate { get; set; }
         public string? RequestComments { get; set; }
         public DateTime? DateActioned { get; set; }
         public bool? Approved { get; set; }

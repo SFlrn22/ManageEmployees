@@ -15,7 +15,7 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveRequests
         }
         void GoToDetails(int id)
         {
-            _navigation.NavigateTo($"/leavereqeusts/details/{id}");
+            _navigation.NavigateTo($"/leaverequests/details/{id}");
         }
     }
 }

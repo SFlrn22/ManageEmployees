@@ -127,7 +127,6 @@ namespace ManageEmployees.Persistence.Migrations
                     RequestComments = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Approved = table.Column<bool>(type: "bit", nullable: true),
                     Cancelled = table.Column<bool>(type: "bit", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: true),
                     RequestingEmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -135,11 +134,6 @@ namespace ManageEmployees.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LeaveRequests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LeaveRequests_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LeaveRequests_LeaveTypes_LeaveTypeId",
                         column: x => x.LeaveTypeId,
@@ -151,17 +145,17 @@ namespace ManageEmployees.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "LeaveTypes",
                 columns: new[] { "Id", "DateCreated", "DateModified", "DefaultDays", "Name" },
-                values: new object[] { 1, new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6223), new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6255), 10, "Vacation" });
+                values: new object[] { 1, new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6901), new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6936), 10, "Vacation" });
 
             migrationBuilder.InsertData(
                 table: "LeaveTypes",
                 columns: new[] { "Id", "DateCreated", "DateModified", "DefaultDays", "Name" },
-                values: new object[] { 2, new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6259), new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6261), 10, "Sick" });
+                values: new object[] { 2, new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6938), new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6940), 10, "Sick" });
 
             migrationBuilder.InsertData(
                 table: "LeaveTypes",
                 columns: new[] { "Id", "DateCreated", "DateModified", "DefaultDays", "Name" },
-                values: new object[] { 3, new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6263), new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6265), 1, "Birthday" });
+                values: new object[] { 3, new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6943), new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6945), 1, "Birthday" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",
@@ -179,11 +173,6 @@ namespace ManageEmployees.Persistence.Migrations
                 column: "LeaveTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeaveRequests_EmployeeId",
-                table: "LeaveRequests",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_LeaveRequests_LeaveTypeId",
                 table: "LeaveRequests",
                 column: "LeaveTypeId");
@@ -192,22 +181,22 @@ namespace ManageEmployees.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "LeaveAllocations");
 
             migrationBuilder.DropTable(
                 name: "LeaveRequests");
 
             migrationBuilder.DropTable(
-                name: "Employees");
-
-            migrationBuilder.DropTable(
-                name: "LeaveTypes");
-
-            migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "EmploymentTypes");
+
+            migrationBuilder.DropTable(
+                name: "LeaveTypes");
         }
     }
 }

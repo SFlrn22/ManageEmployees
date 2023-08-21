@@ -1,6 +1,11 @@
 ﻿@page "/leaverequests/employeeindex"
 
 <h1>Leave Request Log</h1>
+
+<div class="m-2 d-flex justify-content-end">
+    <a href="/leaverequests/create" class="btn btn-success">Add Leave Request</a>
+</div>
+
 <hr />
 @if (string.IsNullOrEmpty(Message) == false)
 {
@@ -42,10 +47,10 @@
                     @item.Employee.FirstName @item.Employee.LastName
                 </td>
                 <td>
-                    @item.StartDate.Value.ToString("yyyy-MM-dd")
+                    @item.StartDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
-                    @item.EndDate.Value.ToString("yyyy-MM-dd")
+                    @item.EndDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
                     @item.LeaveType.Name

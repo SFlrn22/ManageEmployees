@@ -17,10 +17,10 @@ namespace ManageEmployees.Identity.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "6.0.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("ManageEmployees.Identity.Models.ApplicationUser", b =>
                 {
@@ -99,7 +99,7 @@ namespace ManageEmployees.Identity.Migrations
                         {
                             Id = "9107d66c-2b0c-4023-83d8-eb0a77a9d631",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ab9a766-8cf5-40f9-90f8-b55cccb01ab6",
+                            ConcurrencyStamp = "a2b505ae-9ba1-4e2a-aaeb-d20aeddee1a3",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -107,9 +107,9 @@ namespace ManageEmployees.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "SYSTEMADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAECiZW3N5VvrpkbqnSRnXPg0ln7yXuHMZngWA/2i+w/VohYG7s9PvtDWx88E9if/l1A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDVsT2h5G2lLxkrKYd88N5FCqLRVDWoPf/D7L+IzngjXvU+PJccqF3wKeWm+2oH+dw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c3fadc39-1c09-442d-bbfd-ffd3caa4209d",
+                            SecurityStamp = "f8569883-f567-4395-86f0-775f3c83437d",
                             TwoFactorEnabled = false,
                             UserName = "SystemAdmin"
                         },
@@ -117,7 +117,7 @@ namespace ManageEmployees.Identity.Migrations
                         {
                             Id = "cd0ce604-ee45-4f29-84dc-10a14df9d0ed",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "661dfe6b-ef83-4f6e-ae98-bfbc2ab2f51d",
+                            ConcurrencyStamp = "fc2b00f3-c78e-4bfc-910c-e2ae97e97f5b",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -125,9 +125,9 @@ namespace ManageEmployees.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "SYSTEMUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEvXqipGtoYtwoMP5Z9pA8/NW53gFERw2aOHF1FwxcDnHT1t1DQPbzXQzSFPypa70A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENIL6cEuROjXnz7emYyNtAiQ2VArCe5YYIy1iuI67LUMaJaFCoQX9QSPFLlPmrlNwA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6bd4ca86-9080-4915-86f5-36f31154ab88",
+                            SecurityStamp = "6ba4191a-2d28-4762-9e80-70d4fc2c9dc1",
                             TwoFactorEnabled = false,
                             UserName = "SystemUser"
                         });
@@ -163,12 +163,14 @@ namespace ManageEmployees.Identity.Migrations
                         new
                         {
                             Id = "112b0b44-074e-45ab-baca-c7d3eefbcbb6",
+                            ConcurrencyStamp = "7518aa40-c66a-4a0c-86de-0f026514dca7",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "1cf8a3f0-f2fa-4ab7-95fa-ad13306028a3",
+                            ConcurrencyStamp = "8e6c5f9b-c6aa-48c0-9b11-714553b4f59b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -180,7 +182,7 @@ namespace ManageEmployees.Identity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -205,7 +207,7 @@ namespace ManageEmployees.Identity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManageEmployees.Persistence.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20230821133042_UpdatedMigration")]
+    [Migration("20230821160603_UpdatedMigration")]
     partial class UpdatedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,9 +157,6 @@ namespace ManageEmployees.Persistence.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -180,8 +177,6 @@ namespace ManageEmployees.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("LeaveTypeId");
 
@@ -218,24 +213,24 @@ namespace ManageEmployees.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6223),
-                            DateModified = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6255),
+                            DateCreated = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6901),
+                            DateModified = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6936),
                             DefaultDays = 10,
                             Name = "Vacation"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6259),
-                            DateModified = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6261),
+                            DateCreated = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6938),
+                            DateModified = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6940),
                             DefaultDays = 10,
                             Name = "Sick"
                         },
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6263),
-                            DateModified = new DateTime(2023, 8, 21, 16, 30, 42, 625, DateTimeKind.Local).AddTicks(6265),
+                            DateCreated = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6943),
+                            DateModified = new DateTime(2023, 8, 21, 19, 6, 3, 647, DateTimeKind.Local).AddTicks(6945),
                             DefaultDays = 1,
                             Name = "Birthday"
                         });
@@ -296,17 +291,11 @@ namespace ManageEmployees.Persistence.Migrations
 
             modelBuilder.Entity("ManageEmployees.Domain.LeaveRequest", b =>
                 {
-                    b.HasOne("ManageEmployees.Domain.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("ManageEmployees.Domain.LeaveType", "LeaveType")
                         .WithMany()
                         .HasForeignKey("LeaveTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
 
                     b.Navigation("LeaveType");
                 });

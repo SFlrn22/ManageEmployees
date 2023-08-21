@@ -5,11 +5,11 @@
 <div class="alert alert-@ClassName" role="alert">
     <h4 class="alert-heading">@HeadingText</h4>
     <p>
-        <strong>Employee name:</strong> @Request.Employee.FirstName @Request.Employee.LastName <br />
+        <strong>Employee name:</strong> @Request.Employee.FirstName @Request.Employee.LastName
     </p>
     <hr />
     <p>
-        Date Requested - @Request.DateRequested
+        Date Requested - @Request.DateRequested.ToString("yyyy-MM-dd")
     </p>
 </div>
 
@@ -22,13 +22,13 @@
             Start Date
         </dt>
         <dd class="col-sm-10">
-            @Request.StartDate
+            @Request.StartDate.ToString("yyyy-MM-dd")
         </dd>
         <dt class="col-sm-2">
             End Date
         </dt>
         <dd class="col-sm-10">
-            @Request.EndDate
+            @Request.EndDate.ToString("yyyy-MM-dd")
         </dd>
         <dt class="col-sm-2">
             Leave Type

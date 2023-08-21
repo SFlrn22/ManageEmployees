@@ -17,14 +17,10 @@ namespace ManageEmployees.BlazorUI.MappingProfiles
             CreateMap<UpdateLeaveTypeCommand, LeaveTypeVM>().ReverseMap();
 
             CreateMap<LeaveRequestDTO, LeaveRequestVM>()
-                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.RequestDate.DateTime))
-                .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
-                .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
-                .ReverseMap();
-            CreateMap<LeaveRequestDTO, LeaveRequestVM>()
-                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.RequestDate.DateTime))
-                .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
-                .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
+               .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.RequestDate.DateTime)).ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime)).ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
+               .ReverseMap();
+            CreateMap<LeaveRequestDetailsDTO, LeaveRequestVM>()
+                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.RequestDate.DateTime)).ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime)).ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
                 .ReverseMap();
             CreateMap<CreateLeaveRequestCommand, LeaveRequestVM>().ReverseMap();
             CreateMap<UpdateLeaveRequestCommand, LeaveRequestVM>().ReverseMap();

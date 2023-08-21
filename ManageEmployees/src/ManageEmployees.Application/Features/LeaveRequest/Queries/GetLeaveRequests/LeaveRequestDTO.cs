@@ -7,9 +7,8 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequ
     {
         public int Id { get; set; }
         public EmployeeAuth Employee { get; set; }
-        public int RequestingEmployeeId { get; set; }
+        public string RequestingEmployeeId { get; set; }
         public LeaveTypeDTO LeaveType { get; set; }
-        public int LeaveTypeId { get; set; }
         public DateTime RequestDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

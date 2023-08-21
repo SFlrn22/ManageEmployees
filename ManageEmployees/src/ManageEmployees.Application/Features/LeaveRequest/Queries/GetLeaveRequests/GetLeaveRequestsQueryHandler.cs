@@ -40,7 +40,7 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Queries.GetLeaveRequ
                 requests = _mapper.Map<List<LeaveRequestDTO>>(leaveRequests);
                 foreach (var req in requests)
                 {
-                    req.Employee = await _userService.GetEmployee(req.RequestingEmployeeId.ToString());
+                    req.Employee = await _userService.GetEmployee(req.RequestingEmployeeId);
                 }
             }
 

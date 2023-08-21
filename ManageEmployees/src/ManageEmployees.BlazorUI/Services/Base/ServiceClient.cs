@@ -2741,17 +2741,12 @@ namespace ManageEmployees.BlazorUI.Services.Base
         [System.Text.Json.Serialization.JsonPropertyName("requestingEmployeeId")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public int RequestingEmployeeId { get; set; }
+        public string RequestingEmployeeId { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("leaveType")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public LeaveTypeDTO LeaveType { get; set; }
-
-        [System.Text.Json.Serialization.JsonPropertyName("leaveTypeId")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public int LeaveTypeId { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("requestDate")]
 
@@ -2807,7 +2802,7 @@ namespace ManageEmployees.BlazorUI.Services.Base
         [System.Text.Json.Serialization.JsonPropertyName("requestingEmployeeId")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public int RequestingEmployeeId { get; set; }
+        public string RequestingEmployeeId { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("leaveType")]
 
@@ -2819,10 +2814,10 @@ namespace ManageEmployees.BlazorUI.Services.Base
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
         public int LeaveTypeId { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("reqeustDate")]
+        [System.Text.Json.Serialization.JsonPropertyName("requestDate")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]   
-        public System.DateTimeOffset ReqeustDate { get; set; }
+        public System.DateTimeOffset RequestDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("requestComments")]
 

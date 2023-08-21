@@ -24,7 +24,7 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveRequests
         private async Task HandleValidSubmit()
         {
             await _leaveRequestService.CreateLeaveRequest(Request);
-            _navigation.NavigateTo("/leaverequests/");
+            _navigation.NavigateTo("/");
         }
     }
 }

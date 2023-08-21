@@ -16,21 +16,22 @@
     </div>
     <div class="form-group">
         <label for="leaveType">Leave Type</label>
-        <InputSelect class="form-control" id="leaveType" @bind-Value="Request.LeaveType">
+        <InputSelect class="form-control" id="leaveType" @bind-Value="Request.LeaveTypeId">
             <option>Select Leave Type</option>
-            @foreach(var leaveType in leaveTypes)
+            @foreach (var leaveType in leaveTypes)
             {
                 <option value="@leaveType.Id">@leaveType.Name</option>
             }
         </InputSelect>
-        <ValidationMessage For="@(() => Request.LeaveType)" />
+        <ValidationMessage For="@(() => Request.LeaveTypeId)" />
     </div>
     <div class="form-group">
         <label for="comments">Comments</label>
-        <InputDate class="form-control" id="comments" @bind-Value="Request.RequestComments" />
+        <InputTextArea class="form-control" id="comments" @bind-Value="Request.RequestComments" MaxLength="300" />
         <ValidationMessage For="@(() => Request.RequestComments)" />
     </div>
 
-    <button class="btn btn-success" type="submit">Submit request</button>
+    <button class="btn btn-success" type="submit">Submit Request</button>
+
 </EditForm>
 

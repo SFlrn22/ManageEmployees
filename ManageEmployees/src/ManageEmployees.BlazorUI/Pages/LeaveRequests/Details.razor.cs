@@ -10,10 +10,10 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveRequests
         [Inject] NavigationManager _navigation { get; set; }
         [Parameter] public int id { get; set; }
 
-        string ClassName;
-        string HeadingText;
+        string ClassName = string.Empty;
+        string HeadingText = string.Empty;
 
-        public LeaveRequestVM Request { get; private set; } = new LeaveRequestVM();
+        public LeaveRequestVM Request { get; set; } = new LeaveRequestVM();
 
         protected override async Task OnParametersSetAsync()
         {
@@ -22,20 +22,20 @@ namespace ManageEmployees.BlazorUI.Pages.LeaveRequests
 
         protected override async Task OnInitializedAsync()
         {
-            if (Request.Approved is null)
-            {
-                ClassName = "warning";
-                HeadingText = "Pending Approval";
-            }
-            else if (Request.Approved is true)
+            if (Request.Approved is true)
             {
                 ClassName = "success";
                 HeadingText = "Approved";
             }
-            else
+            else if (Request.Approved is false)
             {
                 ClassName = "danger";
                 HeadingText = "Rejected";
+            }
+            else
+            {
+                ClassName = "warning";
+                HeadingText = "Pending Approval";
             }
         }
         public async Task ChangeApproval(bool approvalStatus)

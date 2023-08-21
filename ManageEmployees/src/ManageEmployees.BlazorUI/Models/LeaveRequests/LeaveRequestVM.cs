@@ -19,9 +19,9 @@ namespace ManageEmployees.BlazorUI.Models.LeaveRequests
         public EmployeeVM Employee { get; set; } = new EmployeeVM();
 
         [Display(Name = "Start Date")]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         [Display(Name = "End Date")]
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         [Display(Name = "Leave Type")]
         public int LeaveTypeId { get; set; }
         [Display(Name = "Comments")]
