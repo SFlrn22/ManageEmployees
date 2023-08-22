@@ -8,7 +8,7 @@ namespace ManageEmployees.Application.Features.LeaveRequest.Commands.ChangeLeave
         public ChangeLeaveRequestApprovalCommandValidator()
         {
             RuleFor(l => l.Approved)
-                .NotNull()
+                .NotEmpty()
                 .WithMessage("Approval status cannot be null");
         }
     }
